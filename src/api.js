@@ -10,14 +10,14 @@ async function request(path, opts = {}) {
 }
 
 export const createGame = (max_players, title) =>
-  request('/games', { method: 'POST', body: JSON.stringify({ max_players, title }) });
+  request('games', { method: 'POST', body: JSON.stringify({ max_players, title }) });
 
 export const addPlayer = (gameId, name) =>
-  request(`/games/${gameId}/players`, { method: 'POST', body: JSON.stringify({ name }) });
+  request(`games/${gameId}/players`, { method: 'POST', body: JSON.stringify({ name }) });
 
 export const getGame = (gameId) => request(`/games/${gameId}`);
 
 export const applyDelta = (gameId, playerId, delta, note='') =>
-  request(`/games/${gameId}/players/${playerId}/score`, { method: 'POST', body: JSON.stringify({ delta, note }) });
+  request(`games/${gameId}/players/${playerId}/score`, { method: 'POST', body: JSON.stringify({ delta, note }) });
 
 export const undo = (gameId) => request(`/games/${gameId}/undo`, { method: 'POST' });
