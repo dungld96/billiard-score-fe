@@ -1,0 +1,15 @@
+:root { --max-width:720px; --primary:#1677ff; }
+*{ box-sizing: border-box; }
+body{ margin:0; font-family: Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#fafafa; color:#111; }
+.page { min-height:100vh; }
+.page-header{ background: var(--primary); padding:12px 16px; }
+.page-content{ padding:16px; }
+.container{ max-width:720px; margin:0 auto; padding-bottom:40px; }
+.card-wrap{ margin-top: 16px; }
+.player-card{ text-align:center; border-radius:10px; }
+.player-card .ant-card-body{ padding: 18px; }
+.scoreboard-row{ margin-top: 8px; }
+@media (max-width: 480px) {
+  .player-card .ant-typography { font-size: 14px; }
+  .player-card h2 { font-size: 28px; }
+}
