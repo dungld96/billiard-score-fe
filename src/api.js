@@ -16,7 +16,7 @@ export const createGame = ( title, players) =>
 
 export const getGame = (gameId) => request(`games/${gameId}`);
 
-export const applyDelta = (gameId, playerId, delta, note='') =>
-  request(`games/${gameId}/players/${playerId}/score`, { method: 'POST', body: JSON.stringify({ delta, note }) });
+export const applyDelta = (gameId, scores, note) =>
+  request(`games/${gameId}/round`, { method: 'POST', body: JSON.stringify({ scores, note }) });
 
 export const undo = (gameId) => request(`games/${gameId}/undo`, { method: 'POST' });

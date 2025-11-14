@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createGame, getPlayers } from '../api';
-import { Card, Input, Button, Space, Select, Tag, message } from 'antd';
+import { Card, Input, Button, Space, Select, message } from 'antd';
 
 export default function CreateGame() {
   const [title, setTitle] = useState('');
@@ -16,7 +16,7 @@ export default function CreateGame() {
   const fetchPlayers = async () => {
     const res = await getPlayers();
     if (res?.error) { message.error(res.error); return; }
-    setPlayers(res.players || []);
+    setPlayers(res || []);
   };
 
 
@@ -25,7 +25,7 @@ export default function CreateGame() {
     const g = await createGame(title, selectedIds);
     if (g?.error) { message.error(g.error); return; }
     message.success('Game created');
-    navigate(`/game/${g.id}`);
+    navigate(`/game/${g?.game?.id}`);
   };
 
   return (
@@ -33,13 +33,14 @@ export default function CreateGame() {
       <Card title="Tạo game mới">
         <Space direction="vertical" style={{ width: '100%' }} size="middle">
           <Input placeholder="Tiêu đề (tùy chọn)" value={title} onChange={e => setTitle(e.target.value)} />
-          <Select
+            <Select
             mode="multiple"
             placeholder="Chọn người chơi"
             value={selectedIds}
             onChange={setSelectedIds}
             maxTagCount="responsive"
             options={players.map(p => ({ label: p.name, value: p.id }))}
+            style={{width: "100%"}}
           />
 
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
