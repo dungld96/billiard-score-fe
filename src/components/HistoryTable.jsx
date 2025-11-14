@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'antd';
+import dayjs from 'dayjs';
 
 export default function HistoryTable({ updates = [], players = [] }) {
   if (!players.length) return null;
@@ -21,7 +22,7 @@ export default function HistoryTable({ updates = [], players = [] }) {
       key: p.player.id,
       render: (val) => val ?? ''
     })),
-    { title: 'Thời gian', dataIndex: 'created_at', key: 'round', render: (val) => val ? new Date(val).toLocaleString() : '' },
+    { title: 'Thời gian', dataIndex: 'created_at', key: 'round', render: (val) => val ? dayjs(val).format("DD/MM/YYYY HH:mm:ss") : '' },
   ];
 
   return <Table dataSource={rows} columns={columns} pagination={false} />;
