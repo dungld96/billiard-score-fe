@@ -22,7 +22,7 @@ export default function HistoryTable({ updates = [], players = [] }) {
       key: p.player.id,
       render: (val) => val ?? ''
     })),
-    { title: 'Thời gian', dataIndex: 'created_at', key: 'round', render: (val) => val ? dayjs(val).format("DD/MM/YYYY HH:mm:ss") : '' },
+    { title: 'Thời gian', dataIndex: 'created_at', key: 'round', render: (val) => val ? dayjs(val).format("DD/MM/YYYY HH:mm") : '' },
   ];
 
   return <Table dataSource={rows} columns={columns} pagination={false} />;

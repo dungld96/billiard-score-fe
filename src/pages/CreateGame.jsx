@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createGame, getPlayers } from '../api';
 import { Card, Input, Button, Space, Select, message } from 'antd';
+import Logo from "../image/logo.png"
+
 
 export default function CreateGame() {
   const [title, setTitle] = useState('');
@@ -29,18 +31,21 @@ export default function CreateGame() {
   };
 
   return (
-    <div className="container card-wrap">
+    <div className="container card-wrap" style={{ padding: '16px 24px' }}>
+      <div style={{ display: "flex", justifyContent: 'center', marginBottom: '16px' }}>
+        <img src={Logo} alt="Logo" style={{ height: 64 }} />
+      </div>
       <Card title="Tạo game mới">
         <Space direction="vertical" style={{ width: '100%' }} size="middle">
           <Input placeholder="Tiêu đề (tùy chọn)" value={title} onChange={e => setTitle(e.target.value)} />
-            <Select
+          <Select
             mode="multiple"
             placeholder="Chọn người chơi"
             value={selectedIds}
             onChange={setSelectedIds}
             maxTagCount="responsive"
             options={players.map(p => ({ label: p.name, value: p.id }))}
-            style={{width: "100%"}}
+            style={{ width: "100%" }}
           />
 
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
