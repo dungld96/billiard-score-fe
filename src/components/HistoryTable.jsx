@@ -21,7 +21,7 @@ export default function HistoryTable({ updates = [], players = [] }) {
       key: p.player.id,
       render: (val) => val ?? ''
     })),
-    { title: 'Thời gian', dataIndex: 'created_at', key: 'round' },
+    { title: 'Thời gian', dataIndex: 'created_at', key: 'round', render: (val) => val ? new Date(val).toLocaleString() : '' },
   ];
 
   return <Table dataSource={rows} columns={columns} pagination={false} />;
