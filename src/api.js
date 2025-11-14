@@ -9,11 +9,10 @@ async function request(path, opts = {}) {
   try { return JSON.parse(text); } catch { return text; }
 }
 
-export const createGame = (max_players, title) =>
-  request('games', { method: 'POST', body: JSON.stringify({ max_players, title }) });
+export const getPlayers = () => request(`players`);
 
-export const addPlayer = (gameId, name) =>
-  request(`games/${gameId}/players`, { method: 'POST', body: JSON.stringify({ name }) });
+export const createGame = ( title, players) =>
+  request('games', { method: 'POST', body: JSON.stringify({ title, players }) });
 
 export const getGame = (gameId) => request(`games/${gameId}`);
 
